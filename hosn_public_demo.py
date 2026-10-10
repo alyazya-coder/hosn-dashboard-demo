@@ -7,6 +7,7 @@ from typing import Any
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+import streamlit.components.v1 as components
 
 from hosn_dashboard_ai import (
     FEATURE_ORDER,
@@ -179,6 +180,53 @@ with m3:
 with m4:
     st.metric("AI called", yes_no(selected_final.get("ai_called")))
 
+# Visual-only mobility story. The decision label comes from the selected recording.
+st.subheader("HOSN | Intelligent Mobility")
+st.caption("Animated explanation of the selected recorded decision — not a live network switch.")
+_demo_action = str(selected_action)
+_demo_source = str(selected_source)
+_demo_ai = bool(selected_final.get("ai_called"))
+_demo_html = r"""
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:#071421;color:#eaf7ff;font-family:Segoe UI,Arial,sans-serif}
+.panel{border:1px solid #23556b;border-radius:18px;background:linear-gradient(125deg,#0b2337,#10303b);padding:16px;min-height:355px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.top strong{font-size:17px}.pill{border:1px solid #287a79;border-radius:30px;color:#53e8d5;padding:5px 11px;font-size:11px}
+button{display:inline-block;background:linear-gradient(100deg,#0dd8c4,#41f0b7);color:#062b31;border:0;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;box-shadow:0 0 17px #14d7bf66;max-width:100%;margin:12px 0 8px}button:disabled{opacity:.6;cursor:wait}
+svg{width:100%;height:166px;display:block;overflow:visible}.line{stroke:#375d70;stroke-width:4;stroke-dasharray:7 8}.beam{stroke:#36ead4;stroke-width:5;stroke-linecap:round;filter:drop-shadow(0 0 5px #2cf4c6)}.node{fill:#123449;stroke:#2d9c9b;stroke-width:2}.phone{transition:transform .8s ease-in-out}
+.info{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border:1px solid #285165;background:#0a1d2d;border-radius:10px;padding:11px;font-size:12px}.status{color:#53e8d5;font-weight:700}.foot{color:#a3beca;font-size:11px}.track{height:5px;border-radius:5px;background:#183c4c;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#1ad9ee,#4ef0b7);transition:width .7s}
+</style></head><body><div class="panel">
+<div class="top"><strong>🛡️ HOSN · Mobility Command</strong><span class="pill">RECORDED SCENARIO · VISUAL REPLAY</span></div>
+<button id="go">▶ LAUNCH MOBILITY DEMO</button>
+<svg viewBox="0 0 800 165" aria-label="Illustration of Wi-Fi and emulated 5G connectivity">
+<line x1="120" y1="83" x2="680" y2="83" class="line"/><line id="beam" x1="120" y1="83" x2="165" y2="83" class="beam"/>
+<rect x="10" y="40" width="140" height="92" rx="16" class="node"/><rect x="650" y="40" width="140" height="92" rx="16" class="node"/>
+<g fill="none" stroke="#41ead7" stroke-width="3"><path d="M42 73 Q80 38 118 73 M56 85 Q80 63 104 85"/><path d="M720 59 V99 M704 99 H736 M720 59 L706 74 M720 59 L734 74"/></g>
+<g fill="#eaf7ff" font-size="15" text-anchor="middle"><text x="80" y="115">Wi-Fi AP1</text><text x="720" y="115">5G-like</text></g>
+<g id="phone" class="phone"><circle cx="165" cy="82" r="28" fill="#21d9e8" opacity=".18"/><rect x="151" y="55" width="28" height="51" rx="6" fill="#c6fff6"/><rect x="155" y="62" width="20" height="34" rx="2" fill="#0c3446"/></g>
+</svg>
+<div class="info"><span id="stage" class="status">READY · Wi-Fi connected</span><span id="detail">Controller: __SOURCE__ · __ACTION__</span></div>
+<p class="foot">Decision is read from the recorded VM scenario. Movement is an illustration, not an executed handover.</p>
+<div class="track"><div id="fill" class="fill"></div></div>
+</div>
+<script>
+const action=__ACTION_JSON__, source=__SOURCE_JSON__, ai=__AI_JSON__;
+const btn=document.getElementById('go'),phone=document.getElementById('phone'),beam=document.getElementById('beam'),stage=document.getElementById('stage'),detail=document.getElementById('detail'),fill=document.getElementById('fill');
+let busy=false;const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+btn.onclick=async()=>{if(busy)return;busy=true;btn.disabled=true;btn.textContent='SIMULATION RUNNING…';
+const isHandover=action==='HANDOVER';
+const frames=[{x:165,t:'VIDEO CALL ACTIVE · Wi-Fi connected'},{x:265,t:'USER MOVING · Monitoring quality'},{x:380,t:'HOSN RULES · Evaluating networks'},{x:isHandover?525:405,t:ai?'RULE CONFLICT · AI consulted':'RULES · Clear decision'},{x:isHandover?680:405,t:'FINAL DECISION · '+action}];
+phone.style.transform='translate(0px,0px)';beam.setAttribute('x2','165');fill.style.width='0%';
+for(let i=0;i<frames.length;i++){const f=frames[i];phone.style.transform='translate('+(f.x-165)+'px,0px)';beam.setAttribute('x2',String(f.x));stage.textContent=f.t;detail.textContent='Controller: '+source+' · '+action;fill.style.width=((i+1)*20)+'%';await sleep(1100)}
+btn.textContent='↻ REPLAY MOBILITY DEMO';btn.disabled=false;busy=false};
+</script></body></html>
+"""
+_demo_html = (_demo_html.replace("__ACTION_JSON__", json.dumps(_demo_action))
+    .replace("__SOURCE_JSON__", json.dumps(_demo_source))
+    .replace("__AI_JSON__", json.dumps(_demo_ai))
+    .replace("__ACTION__", _demo_action).replace("__SOURCE__", _demo_source))
+components.html(_demo_html, height=385, scrolling=False)
+
 st.divider()
 
 tab_scenario, tab_replay, tab_contract = st.tabs(
@@ -251,7 +299,8 @@ with tab_scenario:
                 "Executed handover": yes_no(item.get("executed_handover")),
             }
         )
-    st.dataframe(pd.DataFrame(check_rows), use_container_width=True, hide_index=True)
+    with st.expander("View all four monitoring checks"):
+        st.dataframe(pd.DataFrame(check_rows), use_container_width=True, hide_index=True)
 
     st.markdown("#### Measured traffic before and after the decision")
     pre = selected.get("pre_decision", {})
@@ -273,7 +322,17 @@ with tab_scenario:
             }
         )
     metrics_df = pd.DataFrame(metric_rows)
-    st.dataframe(metrics_df, use_container_width=True, hide_index=True)
+    st.markdown("#### Performance snapshots")
+    for first in range(0, len(metric_rows), 3):
+        cols = st.columns(min(3, len(metric_rows) - first))
+        for col, item in zip(cols, metric_rows[first:first+3]):
+            with col:
+                before, after = item["Before"], item["After"]
+                fmt = lambda v: f"{v:.2f}" if isinstance(v, (int, float)) else str(v if v is not None else "N/A")
+                st.markdown(f"**{item['Metric']}**")
+                st.metric("After decision", fmt(after), delta=(f"Before: {fmt(before)}"), delta_color="off")
+    with st.expander("Full measured values (before / after)"):
+        st.dataframe(metrics_df, use_container_width=True, hide_index=True)
 
     chart = go.Figure()
     chart.add_bar(
@@ -289,7 +348,7 @@ with tab_scenario:
         marker_color="#20D9E8",
     )
     chart.update_layout(
-        template="plotly_dark",
+        template=None,
         barmode="group",
         paper_bgcolor="#10263B",
         plot_bgcolor="#10263B",
@@ -297,14 +356,30 @@ with tab_scenario:
         margin=dict(l=20, r=20, t=35, b=90),
         yaxis_title="Measured value",
     )
-    st.plotly_chart(chart, use_container_width=True)
+    st.plotly_chart(chart, use_container_width=True, theme=None)
 
     st.markdown("#### Exact normalized feature vector used by HOSN")
     feature_rows = [
         {"Feature": name, "Value": selected_features.get(name)}
         for name in FEATURE_ORDER
     ]
-    st.dataframe(pd.DataFrame(feature_rows), use_container_width=True, hide_index=True)
+    friendly_features = [
+        ("Wi-Fi signal margin", "current_signal_margin_db", "dB"),
+        ("Candidate signal margin", "candidate_signal_margin_db", "dB"),
+        ("Wi-Fi latency", "current_latency_ms", "ms"),
+        ("Candidate latency", "candidate_latency_ms", "ms"),
+        ("Wi-Fi packet loss", "current_loss_pct", "%"),
+        ("Candidate packet loss", "candidate_loss_pct", "%"),
+    ]
+    for offset in range(0, len(friendly_features), 3):
+        feature_cols = st.columns(3)
+        for col, (label, key, unit) in zip(feature_cols, friendly_features[offset:offset+3]):
+            value = selected_features.get(key)
+            display = f"{value:.2f} {unit}" if isinstance(value, (int, float)) else "N/A"
+            with col:
+                st.metric(label, display)
+    with st.expander("Show all eight exact AI features (technical details)"):
+        st.dataframe(pd.DataFrame(feature_rows), use_container_width=True, hide_index=True)
 
     st.download_button(
         "Download selected real scenario JSON",
@@ -428,9 +503,13 @@ with tab_contract:
             {"Item": "Grouped CV HANDOVER recall", "Value": recall.get("HANDOVER")},
             {"Item": "Model SHA-256", "Value": MODEL.sha256},
         ]
-        st.dataframe(pd.DataFrame(contract_rows), use_container_width=True, hide_index=True)
-        st.markdown("#### Feature order")
-        st.code("\n".join(FEATURE_ORDER), language="text")
+        with st.expander("View complete training contract and validation metrics"):
+            st.dataframe(pd.DataFrame(contract_rows), use_container_width=True, hide_index=True)
+        with st.expander("🧠 View AI Input Features"):
+            cols = st.columns(2)
+            for i, feature in enumerate(FEATURE_ORDER):
+                with cols[i % 2]:
+                    st.info(f"🔹 {i + 1:02d} | {feature}")
         st.info(
             "The dashboard contains only the inference dependencies. The VM is still "
             "required for Mininet-WiFi collection and handover experiments, but not "
