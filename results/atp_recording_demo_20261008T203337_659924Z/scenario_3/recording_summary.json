@@ -1,0 +1,594 @@
+{
+  "action": "STAY",
+  "actual_loss_pct": 0.7222222222222222,
+  "actual_lost_sequences": 13,
+  "attempted_packets": 1800,
+  "checks": {
+    "candidate_verified_before_break": true,
+    "expected_action": "STAY",
+    "handover_used_both_paths": true,
+    "minimum_overlap_met": true,
+    "receiver_completed": true,
+    "receiver_parse_clean": true,
+    "sender_completed": true,
+    "stay_used_only_wifi": true,
+    "wifi_disconnect_verified": true
+  },
+  "controller_decision": {
+    "action": "STAY",
+    "ai_called": true,
+    "controller_result": {
+      "ai_called": true,
+      "ai_prediction": "STAY",
+      "candidate_access": "emulated_5g",
+      "current_access": "wifi",
+      "decision": "STAY",
+      "features": {
+        "candidate_latency_ms": 47.18,
+        "candidate_loss_pct": 0.0,
+        "candidate_signal_margin_db": 15.0,
+        "candidate_trend_db_per_s": 0.0,
+        "current_latency_ms": 10.847,
+        "current_loss_pct": 0.0,
+        "current_signal_margin_db": -6.0,
+        "current_trend_db_per_s": -2.7478794133678353
+      },
+      "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss. AI selected STAY.",
+      "rule_decision": "ASK_AI",
+      "rule_status": "CONFLICT",
+      "source": "AI",
+      "status": "AI_DECIDED"
+    },
+    "handover_authorized": false,
+    "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss. AI selected STAY.",
+    "source": "AI",
+    "status": "AI_DECIDED",
+    "strategy": "HOSN_FULL_AI"
+  },
+  "decision_sequence": 990,
+  "decision_snapshot": {
+    "cell_loss_pct": 0.0,
+    "cell_probe_count": 10,
+    "cell_profile_active": "cell_eval_poor",
+    "cell_rsrp_configured_dbm": -90.0,
+    "cell_rtt_ms": 47.18,
+    "cell_signal_margin_db": 15.0,
+    "cell_trend_db_per_s": 0.0,
+    "design_role": "conflict",
+    "direction": "outbound",
+    "emulated_station_x_m": 65.0,
+    "monitor_observed_at_s": 9.89729108499887,
+    "monitor_signal_observed_at_s": 8.009840819999226,
+    "rule_evaluation": {
+      "decision": "ASK_AI",
+      "features": {
+        "candidate_latency_ms": 47.18,
+        "candidate_loss_pct": 0.0,
+        "candidate_signal_margin_db": 15.0,
+        "candidate_trend_db_per_s": 0.0,
+        "current_latency_ms": 10.847,
+        "current_loss_pct": 0.0,
+        "current_signal_margin_db": -6.0,
+        "current_trend_db_per_s": -2.7478794133678353
+      },
+      "missing_fields": [],
+      "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss.",
+      "status": "CONFLICT"
+    },
+    "scenario_id": "eval01_edge_out_fast_conflict_stay",
+    "selected_access_before_decision": "wifi",
+    "signal_provenance": {
+      "cell": "constant emulated cellular profile, not RF measurement",
+      "wifi": "Mininet-WiFi propagation model"
+    },
+    "speed_class": "fast",
+    "wifi_ap_distance_m": 46.1,
+    "wifi_loss_pct": 0.0,
+    "wifi_probe_count": 10,
+    "wifi_rssi_model_dbm": -86.0,
+    "wifi_rtt_ms": 10.847,
+    "wifi_signal_margin_db": -6.0,
+    "wifi_trend_db_per_s": -2.7478794133678353
+  },
+  "duplicate_datagrams_received": 0,
+  "handover_check": null,
+  "movement": [
+    {
+      "applied_at_s": 0.0070254839993140195,
+      "scheduled_at_s": 0.0,
+      "wifi_profile": "wifi_near",
+      "wifi_rssi_model_dbm": -63.0,
+      "wifi_trend_db_per_s": null,
+      "x_m": 20.0
+    },
+    {
+      "applied_at_s": 2.0065221500008192,
+      "scheduled_at_s": 2.0,
+      "wifi_profile": "wifi_near",
+      "wifi_rssi_model_dbm": -68.0,
+      "wifi_trend_db_per_s": -2.500629325878674,
+      "x_m": 30.0
+    },
+    {
+      "applied_at_s": 4.006753949997801,
+      "scheduled_at_s": 4.0,
+      "wifi_profile": "wifi_moving",
+      "wifi_rssi_model_dbm": -75.0,
+      "wifi_trend_db_per_s": -3.499594397014667,
+      "x_m": 40.0
+    },
+    {
+      "applied_at_s": 8.009840819999226,
+      "scheduled_at_s": 8.0,
+      "wifi_profile": "wifi_eval_good",
+      "wifi_rssi_model_dbm": -86.0,
+      "wifi_trend_db_per_s": -2.7478794133678353,
+      "x_m": 65.0
+    }
+  ],
+  "netem_seed_supported": false,
+  "network_throughput_mbps": 0.9530666666666666,
+  "pilot_valid": true,
+  "post_decision": {
+    "application_goodput_mbps": 0.9528888888888889,
+    "expected_packets": 810,
+    "frames": {
+      "complete": 196,
+      "complete_pct": 97.02970297029702,
+      "damaged": 6,
+      "expected": 202,
+      "longest_incomplete_run_frames": 1,
+      "longest_incomplete_run_ms": 40.0,
+      "missing": 0
+    },
+    "gaps_over_150ms": 0,
+    "loss_pct": 0.7407407407407407,
+    "lost_packets": 6,
+    "max_interarrival_gap_ms": 26.024391,
+    "p95_one_way_process_delay_ms": 15.302042499999999,
+    "received_packets": 804,
+    "rfc3550_interarrival_jitter_ms": 3.0916319882621393
+  },
+  "pre_decision": {
+    "application_goodput_mbps": 0.9532121212121212,
+    "expected_packets": 990,
+    "frames": {
+      "complete": 240,
+      "complete_pct": 97.16599190283401,
+      "damaged": 7,
+      "expected": 247,
+      "longest_incomplete_run_frames": 1,
+      "longest_incomplete_run_ms": 40.0,
+      "missing": 0
+    },
+    "gaps_over_150ms": 0,
+    "loss_pct": 0.7070707070707071,
+    "lost_packets": 7,
+    "max_interarrival_gap_ms": 25.96584,
+    "p95_one_way_process_delay_ms": 16.722186699999998,
+    "received_packets": 983,
+    "rfc3550_interarrival_jitter_ms": 2.974267074666362
+  },
+  "profiles": {
+    "cell": {
+      "applied_seed": null,
+      "configured_not_measured": {
+        "delay_ms": 52.0,
+        "jitter_ms": 10.0,
+        "loss_pct": 3.8,
+        "rate_mbit": 7.5
+      },
+      "name": "cell_eval_poor",
+      "randomization": "unseeded_by_platform_limitation",
+      "requested_seed": 13101,
+      "tc_show": "qdisc netem 8015: root refcnt 3 limit 1000 delay 52ms  10ms loss 3.8% rate 7500Kbit"
+    },
+    "wifi_eval_good": {
+      "applied_seed": null,
+      "configured_not_measured": {
+        "delay_ms": 10.0,
+        "jitter_ms": 2.5,
+        "loss_pct": 0.6,
+        "rate_mbit": 16.0
+      },
+      "name": "wifi_eval_good",
+      "randomization": "unseeded_by_platform_limitation",
+      "requested_seed": 5103,
+      "tc_show": "qdisc netem 8016: root refcnt 5 limit 1000 delay 10ms  2.5ms loss 0.6% rate 16Mbit"
+    },
+    "wifi_moving": {
+      "applied_seed": null,
+      "configured_not_measured": {
+        "delay_ms": 12.0,
+        "jitter_ms": 3.0,
+        "loss_pct": 1.0,
+        "rate_mbit": 15.0
+      },
+      "name": "wifi_moving",
+      "randomization": "unseeded_by_platform_limitation",
+      "requested_seed": 5102,
+      "tc_show": "qdisc netem 8016: root refcnt 5 limit 1000 delay 12ms  3ms loss 1% rate 15Mbit"
+    },
+    "wifi_near": {
+      "applied_seed": null,
+      "configured_not_measured": {
+        "delay_ms": 2.0,
+        "jitter_ms": 0.5,
+        "loss_pct": 0.0,
+        "rate_mbit": 40.0
+      },
+      "name": "wifi_near",
+      "randomization": "unseeded_by_platform_limitation",
+      "requested_seed": 5101,
+      "tc_show": "qdisc netem 8016: root refcnt 5 limit 1000 delay 2ms  499us rate 40Mbit"
+    }
+  },
+  "raw_datagrams_received": 1787,
+  "raw_received_by_path": {
+    "wifi": 1787
+  },
+  "recording_checks": [
+    {
+      "action": "STAY",
+      "controller_decision": {
+        "action": "STAY",
+        "ai_called": false,
+        "controller_result": {
+          "ai_called": false,
+          "ai_prediction": null,
+          "candidate_access": "emulated_5g",
+          "current_access": "wifi",
+          "decision": "STAY",
+          "features": {
+            "candidate_latency_ms": 70.224,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 2.313,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": 17.0,
+            "current_trend_db_per_s": null
+          },
+          "reason": "Candidate lacks the required normalized-margin advantage and does not improve measured delay or loss.",
+          "rule_decision": "STAY",
+          "rule_status": "CLEAR",
+          "source": "RULES",
+          "status": "CLEAR"
+        },
+        "handover_authorized": false,
+        "reason": "Candidate lacks the required normalized-margin advantage and does not improve measured delay or loss.",
+        "source": "RULES",
+        "status": "CLEAR",
+        "strategy": "HOSN_FULL_AI"
+      },
+      "executed_handover": false,
+      "final": false,
+      "number": 1,
+      "observed_at_s": 0.8953281139984028,
+      "snapshot": {
+        "cell_loss_pct": 0.0,
+        "cell_probe_count": 5,
+        "cell_profile_active": "cell_eval_poor",
+        "cell_rsrp_configured_dbm": -90.0,
+        "cell_rtt_ms": 70.224,
+        "cell_signal_margin_db": 15.0,
+        "cell_trend_db_per_s": 0.0,
+        "design_role": "conflict",
+        "direction": "outbound",
+        "emulated_station_x_m": 20.0,
+        "monitor_observed_at_s": 0.8953281139984028,
+        "monitor_signal_observed_at_s": 0.0070254839993140195,
+        "rule_evaluation": {
+          "decision": "STAY",
+          "features": {
+            "candidate_latency_ms": 70.224,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 2.313,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": 17.0,
+            "current_trend_db_per_s": null
+          },
+          "missing_fields": [],
+          "reason": "Candidate lacks the required normalized-margin advantage and does not improve measured delay or loss.",
+          "status": "CLEAR"
+        },
+        "scenario_id": "eval01_edge_out_fast_conflict_stay",
+        "selected_access_before_decision": "wifi",
+        "signal_provenance": {
+          "cell": "constant emulated cellular profile, not RF measurement",
+          "wifi": "Mininet-WiFi propagation model"
+        },
+        "speed_class": "fast",
+        "wifi_ap_distance_m": 10.0,
+        "wifi_loss_pct": 0.0,
+        "wifi_probe_count": 5,
+        "wifi_rssi_model_dbm": -63.0,
+        "wifi_rtt_ms": 2.313,
+        "wifi_signal_margin_db": 17.0,
+        "wifi_trend_db_per_s": null
+      },
+      "stage_index": 0
+    },
+    {
+      "action": "STAY",
+      "controller_decision": {
+        "action": "STAY",
+        "ai_called": false,
+        "controller_result": {
+          "ai_called": false,
+          "ai_prediction": null,
+          "candidate_access": "emulated_5g",
+          "current_access": "wifi",
+          "decision": "STAY",
+          "features": {
+            "candidate_latency_ms": 44.661,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 1.989,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": 12.0,
+            "current_trend_db_per_s": -2.500629325878674
+          },
+          "reason": "Candidate lacks the required normalized-margin advantage and does not improve measured delay or loss.",
+          "rule_decision": "STAY",
+          "rule_status": "CLEAR",
+          "source": "RULES",
+          "status": "CLEAR"
+        },
+        "handover_authorized": false,
+        "reason": "Candidate lacks the required normalized-margin advantage and does not improve measured delay or loss.",
+        "source": "RULES",
+        "status": "CLEAR",
+        "strategy": "HOSN_FULL_AI"
+      },
+      "executed_handover": false,
+      "final": false,
+      "number": 2,
+      "observed_at_s": 2.8708270379975147,
+      "snapshot": {
+        "cell_loss_pct": 0.0,
+        "cell_probe_count": 5,
+        "cell_profile_active": "cell_eval_poor",
+        "cell_rsrp_configured_dbm": -90.0,
+        "cell_rtt_ms": 44.661,
+        "cell_signal_margin_db": 15.0,
+        "cell_trend_db_per_s": 0.0,
+        "design_role": "conflict",
+        "direction": "outbound",
+        "emulated_station_x_m": 30.0,
+        "monitor_observed_at_s": 2.8708270379975147,
+        "monitor_signal_observed_at_s": 2.0065221500008192,
+        "rule_evaluation": {
+          "decision": "STAY",
+          "features": {
+            "candidate_latency_ms": 44.661,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 1.989,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": 12.0,
+            "current_trend_db_per_s": -2.500629325878674
+          },
+          "missing_fields": [],
+          "reason": "Candidate lacks the required normalized-margin advantage and does not improve measured delay or loss.",
+          "status": "CLEAR"
+        },
+        "scenario_id": "eval01_edge_out_fast_conflict_stay",
+        "selected_access_before_decision": "wifi",
+        "signal_provenance": {
+          "cell": "constant emulated cellular profile, not RF measurement",
+          "wifi": "Mininet-WiFi propagation model"
+        },
+        "speed_class": "fast",
+        "wifi_ap_distance_m": 14.14,
+        "wifi_loss_pct": 0.0,
+        "wifi_probe_count": 5,
+        "wifi_rssi_model_dbm": -68.0,
+        "wifi_rtt_ms": 1.989,
+        "wifi_signal_margin_db": 12.0,
+        "wifi_trend_db_per_s": -2.500629325878674
+      },
+      "stage_index": 1
+    },
+    {
+      "action": "STAY",
+      "controller_decision": {
+        "action": "STAY",
+        "ai_called": true,
+        "controller_result": {
+          "ai_called": true,
+          "ai_prediction": "STAY",
+          "candidate_access": "emulated_5g",
+          "current_access": "wifi",
+          "decision": "STAY",
+          "features": {
+            "candidate_latency_ms": 49.29,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 12.461,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": 5.0,
+            "current_trend_db_per_s": -3.499594397014667
+          },
+          "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss. AI selected STAY.",
+          "rule_decision": "ASK_AI",
+          "rule_status": "CONFLICT",
+          "source": "AI",
+          "status": "AI_DECIDED"
+        },
+        "handover_authorized": false,
+        "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss. AI selected STAY.",
+        "source": "AI",
+        "status": "AI_DECIDED",
+        "strategy": "HOSN_FULL_AI"
+      },
+      "executed_handover": false,
+      "final": false,
+      "number": 3,
+      "observed_at_s": 4.881291395999142,
+      "snapshot": {
+        "cell_loss_pct": 0.0,
+        "cell_probe_count": 5,
+        "cell_profile_active": "cell_eval_poor",
+        "cell_rsrp_configured_dbm": -90.0,
+        "cell_rtt_ms": 49.29,
+        "cell_signal_margin_db": 15.0,
+        "cell_trend_db_per_s": 0.0,
+        "design_role": "conflict",
+        "direction": "outbound",
+        "emulated_station_x_m": 40.0,
+        "monitor_observed_at_s": 4.881291395999142,
+        "monitor_signal_observed_at_s": 4.006753949997801,
+        "rule_evaluation": {
+          "decision": "ASK_AI",
+          "features": {
+            "candidate_latency_ms": 49.29,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 12.461,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": 5.0,
+            "current_trend_db_per_s": -3.499594397014667
+          },
+          "missing_fields": [],
+          "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss.",
+          "status": "CONFLICT"
+        },
+        "scenario_id": "eval01_edge_out_fast_conflict_stay",
+        "selected_access_before_decision": "wifi",
+        "signal_provenance": {
+          "cell": "constant emulated cellular profile, not RF measurement",
+          "wifi": "Mininet-WiFi propagation model"
+        },
+        "speed_class": "fast",
+        "wifi_ap_distance_m": 22.36,
+        "wifi_loss_pct": 0.0,
+        "wifi_probe_count": 5,
+        "wifi_rssi_model_dbm": -75.0,
+        "wifi_rtt_ms": 12.461,
+        "wifi_signal_margin_db": 5.0,
+        "wifi_trend_db_per_s": -3.499594397014667
+      },
+      "stage_index": 2
+    },
+    {
+      "action": "STAY",
+      "controller_decision": {
+        "action": "STAY",
+        "ai_called": true,
+        "controller_result": {
+          "ai_called": true,
+          "ai_prediction": "STAY",
+          "candidate_access": "emulated_5g",
+          "current_access": "wifi",
+          "decision": "STAY",
+          "features": {
+            "candidate_latency_ms": 47.18,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 10.847,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": -6.0,
+            "current_trend_db_per_s": -2.7478794133678353
+          },
+          "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss. AI selected STAY.",
+          "rule_decision": "ASK_AI",
+          "rule_status": "CONFLICT",
+          "source": "AI",
+          "status": "AI_DECIDED"
+        },
+        "handover_authorized": false,
+        "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss. AI selected STAY.",
+        "source": "AI",
+        "status": "AI_DECIDED",
+        "strategy": "HOSN_FULL_AI"
+      },
+      "executed_handover": false,
+      "final": true,
+      "number": 4,
+      "observed_at_s": 9.89729108499887,
+      "snapshot": {
+        "cell_loss_pct": 0.0,
+        "cell_probe_count": 10,
+        "cell_profile_active": "cell_eval_poor",
+        "cell_rsrp_configured_dbm": -90.0,
+        "cell_rtt_ms": 47.18,
+        "cell_signal_margin_db": 15.0,
+        "cell_trend_db_per_s": 0.0,
+        "design_role": "conflict",
+        "direction": "outbound",
+        "emulated_station_x_m": 65.0,
+        "monitor_observed_at_s": 9.89729108499887,
+        "monitor_signal_observed_at_s": 8.009840819999226,
+        "rule_evaluation": {
+          "decision": "ASK_AI",
+          "features": {
+            "candidate_latency_ms": 47.18,
+            "candidate_loss_pct": 0.0,
+            "candidate_signal_margin_db": 15.0,
+            "candidate_trend_db_per_s": 0.0,
+            "current_latency_ms": 10.847,
+            "current_loss_pct": 0.0,
+            "current_signal_margin_db": -6.0,
+            "current_trend_db_per_s": -2.7478794133678353
+          },
+          "missing_fields": [],
+          "reason": "Candidate has a sufficient normalized-margin advantage but worse delay/loss.",
+          "status": "CONFLICT"
+        },
+        "scenario_id": "eval01_edge_out_fast_conflict_stay",
+        "selected_access_before_decision": "wifi",
+        "signal_provenance": {
+          "cell": "constant emulated cellular profile, not RF measurement",
+          "wifi": "Mininet-WiFi propagation model"
+        },
+        "speed_class": "fast",
+        "wifi_ap_distance_m": 46.1,
+        "wifi_loss_pct": 0.0,
+        "wifi_probe_count": 10,
+        "wifi_rssi_model_dbm": -86.0,
+        "wifi_rtt_ms": 10.847,
+        "wifi_signal_margin_db": -6.0,
+        "wifi_trend_db_per_s": -2.7478794133678353
+      },
+      "stage_index": 3
+    }
+  ],
+  "recording_demo": {
+    "additional_probe_at_initial_position": false,
+    "fixed_three_check_gate_used": false,
+    "handover_check": null,
+    "model_expected_action_was_not_supplied": true,
+    "movement_positions_x_m": [
+      20.0,
+      30.0,
+      40.0,
+      65.0
+    ],
+    "real_monitoring_checks": 4,
+    "recording_candidate_qos_varies": false,
+    "recording_goal_observed": true,
+    "recording_intermediate_position_adjusted": false,
+    "recording_probes_share_media_links": true,
+    "revision": "atp-recording-three-scenario-v11",
+    "scenario_number": "3",
+    "scenario_title": "CONFLICT: WEAK WI-FI, BUT CANDIDATE SERVICE IS WORSE"
+  },
+  "scenario_design_role": "conflict",
+  "scenario_id": "eval01_edge_out_fast_conflict_stay",
+  "timing": {
+    "candidate_verified_ns": null,
+    "duplicate_start_ns": null,
+    "wifi_break_ns": null,
+    "wifi_disconnected_verified": false
+  },
+  "unique_packets_received": 1787
+}
+
