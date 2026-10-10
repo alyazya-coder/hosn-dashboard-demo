@@ -1,0 +1,196 @@
+{
+  "acceptance_gate": {
+    "accepted": true,
+    "checks": {
+      "group_balanced_accuracy": true,
+      "group_leakage_absent": true,
+      "handover_group_recall": true,
+      "stay_group_recall": true
+    },
+    "thresholds": {
+      "minimum_group_balanced_accuracy": 0.7,
+      "minimum_group_class_recall": 0.6
+    }
+  },
+  "created_utc": "2026-10-03T16:59:47.043703+00:00",
+  "cross_validation": {
+    "fold_count": 4,
+    "folds": [
+      {
+        "fold": 1,
+        "row_metrics": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "confusion_matrix_actual_rows": {
+            "HANDOVER": {
+              "HANDOVER": 16,
+              "STAY": 0
+            },
+            "STAY": {
+              "HANDOVER": 0,
+              "STAY": 16
+            }
+          },
+          "count": 32,
+          "recall": {
+            "HANDOVER": 1.0,
+            "STAY": 1.0
+          }
+        },
+        "test_groups": 8,
+        "train_groups": 24
+      },
+      {
+        "fold": 2,
+        "row_metrics": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "confusion_matrix_actual_rows": {
+            "HANDOVER": {
+              "HANDOVER": 16,
+              "STAY": 0
+            },
+            "STAY": {
+              "HANDOVER": 0,
+              "STAY": 16
+            }
+          },
+          "count": 32,
+          "recall": {
+            "HANDOVER": 1.0,
+            "STAY": 1.0
+          }
+        },
+        "test_groups": 8,
+        "train_groups": 24
+      },
+      {
+        "fold": 3,
+        "row_metrics": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "confusion_matrix_actual_rows": {
+            "HANDOVER": {
+              "HANDOVER": 16,
+              "STAY": 0
+            },
+            "STAY": {
+              "HANDOVER": 0,
+              "STAY": 16
+            }
+          },
+          "count": 32,
+          "recall": {
+            "HANDOVER": 1.0,
+            "STAY": 1.0
+          }
+        },
+        "test_groups": 8,
+        "train_groups": 24
+      },
+      {
+        "fold": 4,
+        "row_metrics": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "confusion_matrix_actual_rows": {
+            "HANDOVER": {
+              "HANDOVER": 16,
+              "STAY": 0
+            },
+            "STAY": {
+              "HANDOVER": 0,
+              "STAY": 16
+            }
+          },
+          "count": 32,
+          "recall": {
+            "HANDOVER": 1.0,
+            "STAY": 1.0
+          }
+        },
+        "test_groups": 8,
+        "train_groups": 24
+      }
+    ],
+    "group_leakage_check_pass": true,
+    "group_metrics": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "confusion_matrix_actual_rows": {
+        "HANDOVER": {
+          "HANDOVER": 16,
+          "STAY": 0
+        },
+        "STAY": {
+          "HANDOVER": 0,
+          "STAY": 16
+        }
+      },
+      "count": 32,
+      "recall": {
+        "HANDOVER": 1.0,
+        "STAY": 1.0
+      }
+    },
+    "row_metrics": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "confusion_matrix_actual_rows": {
+        "HANDOVER": {
+          "HANDOVER": 64,
+          "STAY": 0
+        },
+        "STAY": {
+          "HANDOVER": 0,
+          "STAY": 64
+        }
+      },
+      "count": 128,
+      "recall": {
+        "HANDOVER": 1.0,
+        "STAY": 1.0
+      }
+    }
+  },
+  "features": [
+    "current_signal_margin_db",
+    "candidate_signal_margin_db",
+    "current_latency_ms",
+    "candidate_latency_ms",
+    "current_loss_pct",
+    "candidate_loss_pct",
+    "current_trend_db_per_s",
+    "candidate_trend_db_per_s"
+  ],
+  "group_label_distribution": {
+    "HANDOVER": 16,
+    "STAY": 16
+  },
+  "hyperparameter_search_performed": false,
+  "independent_scenario_groups": 32,
+  "label_source": "HUMAN_PAIRED_OUTCOME_REVIEW",
+  "limitations": [
+    "Development validation uses 32 emulated scenario groups, not an external field test.",
+    "Cellular is an emulated 5G-like IP path, not a complete 3GPP radio/core.",
+    "The model is valid only for genuine rule conflicts under this feature contract.",
+    "Clear rule cases must bypass the model."
+  ],
+  "model": "StandardScaler + class-balanced logistic regression",
+  "model_file": "hosn_conflict_ai_model.joblib",
+  "model_saved": true,
+  "model_sha256": "08906366ef3199f7bf40c1aca507f859d584e722569ce943f852c7497499d2d0",
+  "next_step": "integrate accepted model and run identical three-arm final comparison",
+  "revision": "conflict-ai-grouped-logistic-v1",
+  "row_label_distribution": {
+    "HANDOVER": 64,
+    "STAY": 64
+  },
+  "rows": 128,
+  "sklearn_version": "1.7.2",
+  "source_campaign": "measured_dataset_campaign_20261003T145634_501377Z",
+  "source_training_csv": "reviewed_training_dataset.csv",
+  "source_training_csv_sha256": "30575131e539c5d1a4cc20a4f0da6130d666a03ccd276a814948f589a8a7da24",
+  "synthetic_data": false
+}
+
